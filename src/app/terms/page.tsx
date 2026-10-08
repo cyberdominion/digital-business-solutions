@@ -26,7 +26,7 @@ export default function TermsPage() {
 
             <div className="prose prose-lg max-w-none space-y-8">
               <p>
-                These Terms and Conditions govern your use of the Digital Business 100 campaign
+                These Terms and Conditions govern your use of the 100 Digital Businesses campaign
                 (&ldquo;the Campaign&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;)
                 and the digital infrastructure platform services provided by Atlas Digital Infrastructure
                 Limited (&ldquo;Atlas&rdquo;).
@@ -34,7 +34,7 @@ export default function TermsPage() {
 
               <h2 className="text-2xl font-semibold mt-10 mb-4">1. Campaign Overview</h2>
               <p>
-                The Digital Business 100 campaign offers qualifying Nigerian businesses a professional
+                The 100 Digital Businesses campaign offers qualifying Nigerian businesses a professional
                 business website for ₦50,000. This package includes:
               </p>
               <ul className="list-disc pl-6 space-y-2">
@@ -162,7 +162,7 @@ export default function TermsPage() {
               <ul className="list-none pl-0 space-y-2">
                 <li><strong>Email:</strong> support@digitalbusiness.com.ng</li>
                 <li><strong>WhatsApp:</strong> +234 800 000 0000</li>
-                <li><strong>Address:</strong> Atlas Digital Infrastructure, Lagos, Nigeria</li>
+                <li><strong>Address:</strong> Atlas Digital Infrastructure, Uyo, Nigeria</li>
               </ul>
             </div>
           </div>

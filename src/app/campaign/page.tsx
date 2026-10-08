@@ -22,7 +22,7 @@ export default function CampaignPage() {
                 <span>Launching 100 businesses onto shared infrastructure</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6">
-                Digital Business 100
+                100 Digital Businesses
               </h1>
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto text-gradient">
                 Acquire, qualify, pay and onboard your business onto a production-grade digital

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import {
   LayoutDashboard,
   FileText,
@@ -17,14 +18,13 @@ const navigation = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Applications", href: "/admin/applications", icon: FileText },
   { name: "Businesses", href: "/admin/businesses", icon: Users },
-  { name    : "Payments", href: "/admin/payments", icon: CreditCard },
+  { name: "Payments", href: "/admin/payments", icon: CreditCard },
   { name: "Onboarding", href: "/admin/onboarding", icon: FolderOpen },
-  { name: "Projects", href: "/admin/projects", icon: FolderOpen },
-  { name: "Tasks", href: "/admin/tasks", icon: FileText },
-  { name: "Campaign", href: "/admin/campaign", icon: BarChart3 },
   { name: "Referrals", href: "/admin/referrals", icon: Users },
+  { name: "Campaign", href: "/admin/campaign", icon: BarChart3 },
   { name: "Domains", href: "/admin/domains", icon: Globe },
   { name: "Modules", href: "/admin/modules", icon: Settings },
+  { name: "Tasks", href: "/admin/tasks", icon: FileText },
   { name: "Users", href: "/admin/users", icon: Users },
   { name: "Audit Logs", href: "/admin/audit-logs", icon: Shield },
   { name: "Settings", href: "/admin/settings", icon: Settings },
@@ -43,7 +43,7 @@ export default function AdminLayout({
             <Button variant="ghost" size="sm" className="md:hidden">
               <Menu className="h-4 w-4" />
             </Button>
-            <Link href="/admin" className="font-bold text-xl">
+            <Link href="/admin" className="font-bold text-xl text-gradient">
               DBI Admin
             </Link>
           </div>
@@ -63,7 +63,7 @@ export default function AdminLayout({
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent-purple/10 hover:text-foreground transition-smooth"
                   >
                     <item.icon className="h-4 w-4" />
                     {item.name}
@@ -78,6 +78,8 @@ export default function AdminLayout({
           {children}
         </main>
       </div>
+
+      <WhatsAppButton />
     </div>
   )
 }

@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Digital Business Solutions",
-  description: "Digital Business 100 - Acquire, qualify, pay and onboard the first 100 Nigerian businesses onto a shared multi-tenant infrastructure platform.",
+  description: "100 Digital Businesses - Acquire, qualify, pay and onboard the first 100 Nigerian businesses onto a shared multi-tenant infrastructure platform.",
 }
 
 export default function RootLayout({

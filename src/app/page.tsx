@@ -95,7 +95,7 @@ export default function RootPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 animation-fade-in text-balance">
-                Digital Business <span className="text-gradient">100</span>
+                <span className="text-gradient">100</span> Digital Business
               </h1>
 
               <div className="my-8 animation-fade-in">

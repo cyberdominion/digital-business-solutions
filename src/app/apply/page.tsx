@@ -527,6 +527,18 @@ export default function ApplyPage() {
                 </p>
               </div>
 
+              <div className="flex items-start space-x-3 pt-4 border-t">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  required
+                  className="mt-1 rounded"
+                />
+                <label htmlFor="terms" className="text-sm text-muted-foreground">
+                  I have read and agree to the <Link href="/terms" className="text-primary hover:text-primary/80 font-medium" target="_blank">Terms and Conditions</Link> and <Link href="/privacy" className="text-primary hover:text-primary/80 font-medium" target="_blank">Privacy Policy</Link>. I understand that by submitting this application, I have accepted these terms.
+                </label>
+              </div>
+
               <Button
                 onClick={submitApplication}
                 disabled={isSubmitting}

@@ -11,7 +11,7 @@ interface WhatsAppButtonProps {
 
 export function WhatsAppButton({
   phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "2348000000000",
-  message = "Hello, I need help with the Digital Business 100 campaign.",
+  message = "Hello, I need help with the 100 Digital Businesses campaign.",
   className,
 }: WhatsAppButtonProps) {
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`
