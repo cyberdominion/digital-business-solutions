@@ -62,7 +62,7 @@ export default function ContactPage() {
                       <CardDescription>Chat with us directly on WhatsApp</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="font-medium text-gradient">+234 800 000 0000</p>
+                      <p className="font-medium text-gradient">08105519705</p>
                       <p className="text-sm text-muted-foreground mt-1">Mon-Fri, 9AM - 6PM WAT</p>
                     </CardContent>
                   </Card>

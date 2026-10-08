@@ -43,9 +43,11 @@ export default function FaqPage() {
       <main className="flex-1">
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <Link href="/campaign" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Campaign
+            <Link href="/campaign" className="mb-6">
+              <Button variant="ghost" size="sm" className="transition-smooth hover:shadow-glow hover-lift">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Campaign
+              </Button>
             </Link>
 
             <h1 className="text-4xl font-bold text-center mb-4">Frequently Asked Questions</h1>

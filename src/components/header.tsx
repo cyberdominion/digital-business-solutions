@@ -1,10 +1,11 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import Image from "next/image"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "cn"
-import { Menu, X, ArrowRight, Star } from "lucide-react"
+import { Menu, X, ArrowRight } from "lucide-react"
 
 interface NavLink {
   href: string
@@ -20,11 +21,29 @@ const navLinks: NavLink[] = [
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isMobileMenuOpen])
 
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl text-gradient">
+        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-gradient">
+          <Image src="/logo.png" alt="Logo" width={88} height={88} />
           Digital Business Solutions
         </Link>
 
@@ -64,6 +83,7 @@ export function Header() {
       </div>
 
       <div
+        ref={menuRef}
         className={cn(
           "md:hidden border-t overflow-hidden transition-all duration-300 ease-in-out",
           isMobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"

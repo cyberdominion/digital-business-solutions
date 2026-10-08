@@ -161,7 +161,7 @@ export default function TermsPage() {
               </p>
               <ul className="list-none pl-0 space-y-2">
                 <li><strong>Email:</strong> support@digitalbusiness.com.ng</li>
-                <li><strong>WhatsApp:</strong> +234 800 000 0000</li>
+                <li><strong>WhatsApp:</strong> 08105519705</li>
                 <li><strong>Address:</strong> Atlas Digital Infrastructure, Uyo, Nigeria</li>
               </ul>
             </div>

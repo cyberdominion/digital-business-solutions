@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ArrowRight, Check, Star, BarChart3, Globe, TrendingUp, Shield, Clock, ClipboardEdit, Search, CreditCard, Rocket } from "lucide-react"
@@ -95,7 +96,7 @@ export default function RootPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 animation-fade-in text-balance">
-                <span className="text-gradient">100</span> Digital Business
+                Join <span className="text-gradient">100</span> Digital Businesses
               </h1>
 
               <div className="my-8 animation-fade-in">
@@ -289,6 +290,139 @@ export default function RootPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-muted/50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gradient mb-4">Businesses Live Now</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                See the businesses that have already been onboarded onto our shared infrastructure platform.
+              </p>
+            </div>
+            <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
+                <CardContent className="pt-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                    <Globe className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-center mb-2 text-gradient">Patience Sewing</h3>
+                  <p className="text-sm text-muted-foreground text-center mb-3">Fashion & Apparel · Lagos</p>
+                  <div className="text-center">
+                    <a
+                      href="https://patiencesewing.com.ng"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
+                    >
+                      Visit Website
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
+                <CardContent className="pt-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                    <Globe className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-center mb-2 text-gradient">Grace Kitchen</h3>
+                  <p className="text-sm text-muted-foreground text-center mb-3">Food & Restaurant · Abuja</p>
+                  <div className="text-center">
+                    <a
+                      href="https://gracekitchen.com.ng"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
+                    >
+                      Visit Website
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
+                <CardContent className="pt-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                    <Globe className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-center mb-2 text-gradient">Urban Threads</h3>
+                  <p className="text-sm text-muted-foreground text-center mb-3">Fashion & Apparel · Port Harcourt</p>
+                  <div className="text-center">
+                    <a
+                      href="https://urbanthreads.com.ng"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
+                    >
+                      Visit Website
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
+                What Our Businesses Say
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Hear from business owners who have transformed their operations with our platform.
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2">
+              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-1 mb-4 text-yellow-400">
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "Getting my fashion store online was seamless. The team handled everything from
+                    domain to design. I am getting orders from customers I never reached before."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-full flex items-center justify-center">
+                      <span className="text-sm font-bold text-gradient">PS</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gradient">Patience Johnson</p>
+                      <p className="text-sm text-muted-foreground">Patience Sewing</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-1 mb-4 text-yellow-400">
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                    <Star className="h-5 w-5 fill-current" />
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "As a food vendor, I never thought I could afford a professional website. For
+                    50k, I got more than I expected. Online orders have tripled!"
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-full flex items-center justify-center">
+                      <span className="text-sm font-bold text-gradient">GA</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gradient">Grace Adeyemi</p>
+                      <p className="text-sm text-muted-foreground">Grace Kitchen</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>

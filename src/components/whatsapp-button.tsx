@@ -10,7 +10,7 @@ interface WhatsAppButtonProps {
 }
 
 export function WhatsAppButton({
-  phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "2348000000000",
+  phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "2348105519705",
   message = "Hello, I need help with the 100 Digital Businesses campaign.",
   className,
 }: WhatsAppButtonProps) {
