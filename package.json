@@ -1,0 +1,49 @@
+{
+  "name": "digital-business-solutions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Digital Business 100 Campaign Platform",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "test": "vitest",
+    "test:watch": "vitest watch",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "@hookform/resolvers": "^5.0.0",
+    "@prisma/client": "^6.0.0",
+    "@radix-ui/react-slot": "^1.0.0",
+    "@tailwindcss/turbopack": "^4.3.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "cn": "^0.4.0",
+    "lucide-react": "^0.469.0",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-hook-form": "^7.0.0",
+    "tailwind-merge": "^3.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.0",
+    "prisma": "^6.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5",
+    "vitest": "^3.0.0"
+  }
+}

@@ -1,0 +1,500 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  password      String?
+  image         String?
+  role          String    @default("APPLICANT") // APPLICANT, OWNER, ADMIN, OPERATIONS, PLATFORM
+  status        String    @default("ACTIVE") // ACTIVE, SUSPENDED, DELETED
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  memberships OrganizationMember[]
+  sessions     Session[]
+  applications Application[]
+  auditLogs    AuditLog[]
+
+  @@index([email])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  legalName   String?
+  industry    String?
+  status      String   @default("PENDING") // PENDING, ACTIVE, SUSPENDED, ARCHIVED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members     OrganizationMember[]
+  campaigns   CampaignEnrollment[]
+  applications Application[]
+  payments    Payment[]
+  onboarding  OnboardingProject[]
+  assets      Asset[]
+  tasks       Task[]
+  notes       InternalNote[]
+  supportTickets SupportTicket[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  roleId         String
+  status         String   @default("ACTIVE") // ACTIVE, INVITED, REMOVED
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([organizationId])
+  @@index([userId])
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  name        String   @unique // e.g., applications.read, payments.write
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  roles RolePermission[]
+}
+
+model RolePermission {
+  id           String     @id @default(cuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime   @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+}
+
+model Campaign {
+  id                String   @id @default(cuid())
+  name              String
+  slug              String   @unique
+  price             Float
+  currency          String   @default("NGN")
+  capacity          Int
+  enrolledCount     Int      @default(0)
+  startDate         DateTime
+  endDate           DateTime?
+  status            String   @default("ACTIVE") // ACTIVE, PAUSED, CLOSED
+  inclusions        Json?
+  eligibilityRules  Json?
+  terms             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  applications Application[]
+  enrollments  CampaignEnrollment[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([startDate])
+}
+
+model CampaignEnrollment {
+  id             String   @id @default(cuid())
+  campaignId     String
+  organizationId String
+  enrolledAt     DateTime @default(now())
+
+  campaign     Campaign     @relation(fields: [campaignId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@unique([campaignId, organizationId])
+  @@index([campaignId])
+  @@index([organizationId])
+}
+
+model Application {
+  id              String   @id @default(cuid())
+  campaignId      String
+  organizationId  String?
+  applicantUserId String?
+  status          String   @default("DRAFT") // DRAFT, SUBMITTED, UNDER_REVIEW, REJECTED, APPROVED, PAYMENT_PENDING, PAID, ONBOARDING, DEVELOPMENT, REVIEW, LIVE
+  businessName    String
+  legalName       String?
+  industry        String
+  description     String?
+  location        String?
+  yearsOperating  Int?
+  registrationStatus String?
+  businessModel   String?
+  ownerName       String
+  email           String
+  phone           String
+  whatsapp        String?
+  preferredContact String?
+  website         String?
+  instagram       String?
+  facebook        String?
+  tiktok          String?
+  googleBusiness  String?
+  existingDomain  String?
+  businessEmail   String?
+  goals           Json?
+  requirements    Json?
+  moduleRecommendations Json?
+  score           Int?
+  source          String?  // organic, referral, social, etc.
+  referralCode    String?
+  utmSource       String?
+  utmMedium       String?
+  utmCampaign     String?
+  utmContent      String?
+  utmTerm         String?
+  landingPage     String?
+  firstTouch      DateTime?
+  lastTouch       DateTime?
+  submittedAt     DateTime?
+  reviewedAt      DateTime?
+  approvedAt      DateTime?
+  rejectedAt      DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  campaign     Campaign      @relation(fields: [campaignId], references: [id])
+  organization Organization? @relation(fields: [organizationId], references: [id])
+  user         User?         @relation(fields: [applicantUserId], references: [id])
+  answers      ApplicationAnswer[]
+  events       ApplicationEvent[]
+  payments     Payment[]
+  onboarding   OnboardingProject?
+
+  @@index([campaignId])
+  @@index([organizationId])
+  @@index([applicantUserId])
+  @@index([status])
+  @@index([email])
+  @@index([createdAt])
+}
+
+model ApplicationAnswer {
+  id            String   @id @default(cuid())
+  applicationId String
+  questionKey   String
+  questionLabel String?
+  answer        Json?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId])
+}
+
+model ApplicationEvent {
+  id            String   @id @default(cuid())
+  applicationId String
+  fromStatus    String?
+  toStatus      String?
+  actor         String?  // user id or system
+  notes         String?
+  metadata      Json?
+  createdAt     DateTime @default(now())
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId])
+  @@index([createdAt])
+}
+
+model Payment {
+  id                 String   @id @default(cuid())
+  organizationId     String?
+  applicationId      String
+  provider           String   @default("PAYSTACK")
+  providerReference  String   @unique
+  amount             Float
+  currency           String   @default("NGN")
+  status             String   @default("PENDING") // PENDING, SUCCESS, FAILED
+  paidAt             DateTime?
+  metadata           Json?
+  fulfillmentStatus  String   @default("PENDING") // PENDING, PROCESSING, FULFILLED, FAILED
+  fulfilledAt        DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  organization Organization? @relation(fields: [organizationId], references: [id])
+  application  Application  @relation(fields: [applicationId], references: [id])
+  events       PaymentEvent[]
+  refunds      Refund[]
+
+  @@index([organizationId])
+  @@index([applicationId])
+  @@index([providerReference])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model PaymentEvent {
+  id         String   @id @default(cuid())
+  paymentId  String
+  type       String   // init, success, failed, refunded, webhook_received
+  actor      String?
+  notes      String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+}
+
+model Refund {
+  id          String   @id @default(cuid())
+  paymentId   String
+  amount      Float
+  currency    String
+  reason      String?
+  status      String   @default("PENDING") // PENDING, PROCESSED, FAILED
+  processedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@index([paymentId])
+}
+
+model OnboardingProject {
+  id             String   @id @default(cuid())
+  applicationId  String   @unique
+  organizationId String
+  status         String   @default("NOT_STARTED") // NOT_STARTED, IN_PROGRESS, COMPLETED, PAUSED
+  progress       Int      @default(0)
+  startedAt      DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  application Application @relation(fields: [applicationId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id])
+  steps       OnboardingStep[]
+  tasks       Task[]
+
+  @@index([applicationId])
+  @@index([organizationId])
+  @@index([status])
+}
+
+model OnboardingStep {
+  id             String   @id @default(cuid())
+  projectId      String
+  key            String
+  label          String
+  status         String   @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, SKIPPED
+  completedAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  project OnboardingProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, key])
+  @@index([projectId])
+}
+
+model Task {
+  id             String   @id @default(cuid())
+  organizationId String
+  projectId      String?
+  type           String   // onboarding, internal, support
+  title          String
+  description    String?
+  status         String   @default("PENDING") // PENDING, ASSIGNED, IN_PROGRESS, COMPLETED, CANCELLED
+  priority       String   @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  assigneeId     String?
+  dueDate        DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization? @relation(fields: [organizationId], references: [id])
+  project      OnboardingProject? @relation(fields: [projectId], references: [id])
+
+  @@index([organizationId])
+  @@index([projectId])
+  @@index([status])
+  @@index([dueDate])
+}
+
+model Asset {
+  id             String   @id @default(cuid())
+  organizationId String
+  uploadedBy     String?
+  type           String   // logo, product_image, service_image, team_photo, brand_asset, document, video, other
+  publicId       String?
+  url            String
+  mimeType       String?
+  size           Int?
+  width          Int?
+  height         Int?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@index([organizationId])
+  @@index([type])
+}
+
+model InternalNote {
+  id             String   @id @default(cuid())
+  organizationId String
+  authorId       String?
+  content        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@index([organizationId])
+}
+
+model SupportTicket {
+  id             String   @id @default(cuid())
+  organizationId String
+  subject        String
+  description    String?
+  status         String   @default("OPEN") // OPEN, IN_PROGRESS, RESOLVED, CLOSED
+  priority       String   @default("MEDIUM")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@index([organizationId])
+  @@index([status])
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // email, whatsapp, in_app
+  event       String
+  subject     String?
+  body        String?
+  metadata    Json?
+  sentAt      DateTime?
+  status      String   @default("PENDING") // PENDING, SENT, FAILED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String
+  resource    String
+  resourceId  String?
+  metadata    Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([resource])
+  @@index([resourceId])
+  @@index([createdAt])
+}
+
+model Referral {
+  id             String   @id @default(cuid())
+  code           String   @unique
+  referrerId     String?
+  referrerType   String   // user, organization
+  clicks         Int      @default(0)
+  conversions    Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  conversionsList ReferralConversion[]
+
+  @@index([code])
+}
+
+model ReferralConversion {
+  id             String   @id @default(cuid())
+  referralId     String
+  applicationId  String?
+  organizationId String?
+  rewardStatus   String   @default("PENDING") // PENDING, QUALIFIED, REWARDED
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  referral Referral @relation(fields: [referralId], references: [id])
+
+  @@index([referralId])
+  @@index([applicationId])
+}
+
+model AttributionEvent {
+  id             String   @id @default(cuid())
+  applicationId  String?
+  sessionId      String?
+  eventType      String   // view, click, submit
+  source         String?
+  medium         String?
+  campaign       String?
+  content        String?
+  term           String?
+  landingPage    String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  @@index([applicationId])
+  @@index([sessionId])
+  @@index([eventType])
+  @@index([createdAt])
+}
