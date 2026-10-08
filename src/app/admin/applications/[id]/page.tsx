@@ -5,8 +5,10 @@ import { prisma } from "@/lib/db/client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import Link from "next/link"
-import { updateApplicationStatus } from "@/modules/applications/actions"
+import { updateApplicationStatus, recordManualPayment } from "@/modules/applications/actions"
 
 const statusColors: Record<string, string> = {
   DRAFT: "bg-gray-100",
@@ -63,11 +65,11 @@ export default async function AdminApplicationDetailPage({
         </CardContent>
       </Card>
 
-      <form action={updateApplicationStatus}>
-        <input type="hidden" name="applicationId" value={app.id} />
-        <Card>
-          <CardHeader><CardTitle>Actions</CardTitle></CardHeader>
-          <CardContent className="space-y-4">
+      <Card>
+        <CardHeader><CardTitle>Actions</CardTitle></CardHeader>
+        <CardContent className="space-y-4">
+          <form action={updateApplicationStatus}>
+            <input type="hidden" name="applicationId" value={app.id} />
             <div className="flex gap-4">
               <select name="status" className="border rounded px-3 py-1">
                 <option value="UNDER_REVIEW">Mark Under Review</option>
@@ -77,9 +79,32 @@ export default async function AdminApplicationDetailPage({
               </select>
               <Button type="submit">Update Status</Button>
             </div>
-          </CardContent>
-        </Card>
-      </form>
+          </form>
+
+          <hr className="border-border" />
+
+          <form action={recordManualPayment}>
+            <input type="hidden" name="applicationId" value={app.id} />
+            <h4 className="font-medium">Record Manual Payment</h4>
+            <p className="text-sm text-muted-foreground">Use for payments made outside Paystack (bank transfer, cash, etc.)</p>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div>
+                <Label htmlFor="amount">Amount</Label>
+                <Input id="amount" name="amount" type="number" step="1" defaultValue="50000" min="1" />
+              </div>
+              <div>
+                <Label htmlFor="currency">Currency</Label>
+                <Input id="currency" name="currency" type="text" defaultValue="NGN" />
+              </div>
+              <div>
+                <Label htmlFor="notes">Notes</Label>
+                <Input id="notes" name="notes" placeholder="e.g., Bank transfer received, Cash payment" />
+              </div>
+            </div>
+            <Button type="submit">Record Payment</Button>
+          </form>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader><CardTitle>Event History</CardTitle></CardHeader>
