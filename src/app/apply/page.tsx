@@ -12,6 +12,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress"
 import { Loader2, Check, ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { Header } from "@/components/header"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import {
   businessInfoSchema,
   contactSchema,
@@ -144,8 +146,9 @@ export default function ApplyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-muted/30 py-8">
-      <div className="container mx-auto max-w-4xl px-4">
+    <div className="min-h-screen bg-muted/30 py-8 flex flex-col">
+      <Header />
+      <div className="container mx-auto max-w-4xl px-4 flex-1">
         <div className="mb-8">
           <div className="flex items-center justify-between">
             {currentStepIndex > 0 && currentStep !== "submit" && (
@@ -580,6 +583,8 @@ export default function ApplyPage() {
           </Card>
         )}
       </div>
+
+      <WhatsAppButton />
     </div>
   )
 }

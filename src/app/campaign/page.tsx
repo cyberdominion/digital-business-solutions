@@ -5,7 +5,22 @@ import { Header } from "@/components/header"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ArrowRight, Check, Star, ClipboardEdit, Search, CreditCard, Rocket, Globe } from "lucide-react"
 
-export default function CampaignPage() {
+export default async function CampaignPage() {
+  const campaign = await (async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/v1"}/campaigns`)
+      const data = await res.json()
+      return data.data?.[0] || null
+    } catch {
+      return null
+    }
+  })()
+
+  const totalSlots = campaign?.capacity ?? 100
+  const filledSlots = campaign?.enrolledCount ?? 0
+  const remainingSlots = totalSlots - filledSlots
+  const spotsLeft = remainingSlots > 0
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -21,13 +36,26 @@ export default function CampaignPage() {
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>Launching 100 businesses onto shared infrastructure</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6">
+
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm font-medium">
+                  <span className="text-destructive font-bold">{remainingSlots}</span>
+                  <span className="text-muted-foreground">slots remaining out of {totalSlots}</span>
+                </div>
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 text-gradient">
                 100 Digital Businesses
               </h1>
-              <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto text-gradient">
+              <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
                 Acquire, qualify, pay and onboard your business onto a production-grade digital
                 infrastructure platform for just <strong className="text-gradient">₦50,000</strong>.
               </p>
+              {spotsLeft && (
+                <div className="mt-4 inline-block bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm">
+                  <span className="text-destructive font-medium">Only {remainingSlots} spots left!</span>
+                </div>
+              )}
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild className="transition-bounce hover:shadow-glow">
                   <Link href="/apply">

@@ -35,15 +35,17 @@ export default function LoginPage() {
         body: JSON.stringify(data),
       })
 
-      const result = await res.json()
+      const result = await res.json().catch(() => null)
 
-      if (!result.success) {
-        setError(result.error?.message ?? "Login failed")
+      if (!result) {
+        setError("Server error. Please try again later or contact support.")
+      } else if (!result.success) {
+        setError(result.error?.message ?? "Login failed. Please check your credentials.")
       } else {
         window.location.href = "/dashboard"
       }
     } catch {
-      setError("Network error. Please try again.")
+      setError("Network error. Please check your connection and try again.")
     } finally {
       setIsLoading(false)
     }

@@ -351,6 +351,9 @@ export default function RootPage() {
                 <Link href="/campaign/how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
                   How It Works
                 </Link>
+                <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
+                  About
+                </Link>
               </div>
             </div>
             <div>

@@ -13,6 +13,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "/campaign", label: "The Campaign" },
+  { href: "/about", label: "About" },
   { href: "/campaign/how-it-works", label: "How It Works" },
   { href: "/campaign/faq", label: "FAQ" },
 ]
