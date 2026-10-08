@@ -51,7 +51,7 @@ export function Header() {
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-gradient">
-          <Image src="/logo.png" alt="Logo" width={32} height={32} />
+          <Image src="/logo.png" alt="Logo" width={55} height={55} />
           Digital Business Solutions
         </Link>
 
