@@ -22,10 +22,16 @@ const navLinks: NavLink[] = [
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        toggleRef.current &&
+        !toggleRef.current.contains(event.target as Node)
+      ) {
         setIsMobileMenuOpen(false)
       }
     }
@@ -39,11 +45,13 @@ export function Header() {
     }
   }, [isMobileMenuOpen])
 
+  const toggleMenu = () => setIsMobileMenuOpen((prev) => !prev)
+
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-gradient">
-          <Image src="/logo.png" alt="Logo" width={88} height={88} />
+          <Image src="/logo.png" alt="Logo" width={32} height={32} />
           Digital Business Solutions
         </Link>
 
@@ -67,9 +75,10 @@ export function Header() {
 
         <div className="md:hidden">
           <Button
+            ref={toggleRef}
             variant="ghost"
             size="sm"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMenu}
             className="h-9 w-9 px-2 hover:bg-muted/50 transition-smooth"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -86,7 +95,7 @@ export function Header() {
         ref={menuRef}
         className={cn(
           "md:hidden border-t overflow-hidden transition-all duration-300 ease-in-out",
-          isMobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <div className="container mx-auto px-4 py-4 space-y-3">

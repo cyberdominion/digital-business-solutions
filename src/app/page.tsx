@@ -17,6 +17,7 @@ function CountdownTimer() {
     minutes: 0,
     seconds: 0,
   })
+  const [pulse, setPulse] = useState(false)
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -38,23 +39,28 @@ function CountdownTimer() {
     return () => clearInterval(timer)
   }, [])
 
+  useEffect(() => {
+    const pulseTimer = setInterval(() => setPulse((prev) => !prev), 1000)
+    return () => clearInterval(pulseTimer)
+  }, [])
+
   return (
-    <div className="inline-flex items-center gap-2 sm:gap-4 bg-destructive/10 border border-destructive/20 rounded-xl px-3 sm:px-6 py-2 sm:py-3">
-      <Clock className="h-5 w-5 text-destructive" />
+    <div className="inline-flex items-center gap-2 sm:gap-4 bg-destructive/10 border border-destructive/20 rounded-xl px-3 sm:px-6 py-2 sm:py-3 animation-pulse-subtle">
+      <Clock className="h-5 w-5 text-destructive animation-pulse" />
       <div className="flex items-center gap-1 sm:gap-2 text-sm font-mono">
-        <span className="text-destructive font-bold">{timeLeft.days.toString().padStart(2, "0")}</span>
+        <span className="text-destructive font-bold animation-pulse">{timeLeft.days.toString().padStart(2, "0")}</span>
         <span className="text-muted-foreground">d</span>
         <span>:</span>
-        <span className="text-destructive font-bold">{timeLeft.hours.toString().padStart(2, "0")}</span>
+        <span className="text-destructive font-bold animation-pulse">{timeLeft.hours.toString().padStart(2, "0")}</span>
         <span className="text-muted-foreground">h</span>
         <span>:</span>
-        <span className="text-destructive font-bold">{timeLeft.minutes.toString().padStart(2, "0")}</span>
+        <span className="text-destructive font-bold animation-pulse">{timeLeft.minutes.toString().padStart(2, "0")}</span>
         <span className="text-muted-foreground">m</span>
         <span>:</span>
-        <span className="text-destructive font-bold">{timeLeft.seconds.toString().padStart(2, "0")}</span>
+        <span className="text-destructive font-bold animation-pulse">{timeLeft.seconds.toString().padStart(2, "0")}</span>
         <span className="text-muted-foreground">s</span>
       </div>
-      <span className="text-xs sm:text-sm text-destructive font-medium hidden sm:inline">Limited spots</span>
+      <span className="text-xs sm:text-sm text-destructive font-medium hidden sm:inline animation-pulse">Limited spots</span>
     </div>
   )
 }
@@ -194,7 +200,7 @@ export default function RootPage() {
                 <div>
                   <h3 className="font-semibold">One Year Hosting</h3>
                   <p className="text-sm text-muted-foreground">
-                    Fast, secure hosting powered by Vercel Edge Network.
+                    Fast, secure hosting powered by reliable Edge Network.
                   </p>
                 </div>
               </div>

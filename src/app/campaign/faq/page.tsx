@@ -43,7 +43,7 @@ export default function FaqPage() {
       <main className="flex-1">
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <Link href="/campaign" className="mb-6">
+            <Link href="/campaign" className="block mb-6">
               <Button variant="ghost" size="sm" className="transition-smooth hover:shadow-glow hover-lift">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Campaign

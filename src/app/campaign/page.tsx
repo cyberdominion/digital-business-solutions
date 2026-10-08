@@ -38,7 +38,7 @@ export default async function CampaignPage() {
               </div>
 
               <div className="mb-6">
-                <div className="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm font-medium">
+                <div className="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm font-medium animation-slot-breathing">
                   <span className="text-destructive font-bold">{remainingSlots}</span>
                   <span className="text-muted-foreground">slots remaining out of {totalSlots}</span>
                 </div>
@@ -52,7 +52,7 @@ export default async function CampaignPage() {
                 infrastructure platform for just <strong className="text-gradient">₦50,000</strong>.
               </p>
               {spotsLeft && (
-                <div className="mt-4 inline-block bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm">
+                <div className="mt-4 inline-block bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm animation-slot-breathing">
                   <span className="text-destructive font-medium">Only {remainingSlots} spots left!</span>
                 </div>
               )}
