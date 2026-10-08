@@ -1,47 +1,35 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Star } from "lucide-react"
+import { Header } from "@/components/header"
+import { WhatsAppButton } from "@/components/whatsapp-button"
+import { ArrowRight, Check, Star, ClipboardEdit, Search, CreditCard, Rocket, Globe } from "lucide-react"
 
 export default function CampaignPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="font-bold text-xl">
-            Digital Business Solutions
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link href="/campaign/how-it-works" className="text-sm hover:text-foreground">
-              How It Works
-            </Link>
-            <Link href="/campaign/faq" className="text-sm hover:text-foreground">
-              FAQ
-            </Link>
-            <Button asChild>
-              <Link href="/apply">Start Application</Link>
-            </Button>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="flex-1">
-        <section className="py-20 md:py-32">
-          <div className="container mx-auto px-4">
+        <section className="py-20 md:py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-subtle pointer-events-none" />
+          <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm">
+              <div
+                className="inline-flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm animation-fade-in mb-6"
+              >
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span>Launching 100 businesses onto shared infrastructure</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6">
                 Digital Business 100
               </h1>
-              <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto text-gradient">
                 Acquire, qualify, pay and onboard your business onto a production-grade digital
-                infrastructure platform for just <strong>₦50,000</strong>.
+                infrastructure platform for just <strong className="text-gradient">₦50,000</strong>.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild>
+                <Button size="lg" asChild className="transition-bounce hover:shadow-glow">
                   <Link href="/apply">
                     Start Application
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -133,56 +121,56 @@ export default function CampaignPage() {
             <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
             <div className="max-w-4xl mx-auto">
               <div className="space-y-8">
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
-                    1
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground">
+                    <ClipboardEdit className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Apply</h3>
+                    <h3 className="font-semibold text-lg">Apply</h3>
                     <p className="text-sm text-muted-foreground">
                       Fill out a short application about your business.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
-                    2
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground">
+                    <Search className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Review & Approval</h3>
+                    <h3 className="font-semibold text-lg">Review & Approval</h3>
                     <p className="text-sm text-muted-foreground">
                       Our team reviews your application within 48 hours.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
-                    3
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground">
+                    <CreditCard className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Pay ₦50,000</h3>
+                    <h3 className="font-semibold text-lg">Pay ₦50,000</h3>
                     <p className="text-sm text-muted-foreground">
                       Secure payment via Paystack. Only after approval.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
-                    4
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground">
+                    <Rocket className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Get On Boarded</h3>
+                    <h3 className="font-semibold text-lg">Get On Boarded</h3>
                     <p className="text-sm text-muted-foreground">
                       Access your workspace, submit assets, and we build your website.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
-                    5
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground">
+                    <Globe className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Go Live</h3>
+                    <h3 className="font-semibold text-lg">Go Live</h3>
                     <p className="text-sm text-muted-foreground">
                       Your business goes live with a professional website.
                     </p>
@@ -229,6 +217,8 @@ export default function CampaignPage() {
           </div>
         </div>
       </footer>
+
+      <WhatsAppButton />
     </div>
   )
 }

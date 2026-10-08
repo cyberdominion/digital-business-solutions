@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Header } from "@/components/header"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ArrowLeft, ChevronDown } from "lucide-react"
 
 const faqs = [
@@ -35,37 +37,53 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        <Link href="/campaign" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Campaign
-        </Link>
+    <div className="flex flex-col min-h-screen">
+      <Header />
 
-        <h1 className="text-4xl font-bold text-center mb-4">Frequently Asked Questions</h1>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Everything you need to know about the Digital Business 100 campaign.
-        </p>
+      <main className="flex-1">
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <Link href="/campaign" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Campaign
+            </Link>
 
-        <div className="max-w-3xl mx-auto space-y-4">
-          {faqs.map((faq) => (
-            <details key={faq.question} className="border rounded-lg p-4 bg-card">
-              <summary className="font-semibold cursor-pointer flex items-center justify-between">
-                {faq.question}
-                <ChevronDown className="h-5 w-5 text-muted-foreground" />
-              </summary>
-              <p className="text-muted-foreground mt-3">{faq.answer}</p>
-            </details>
-          ))}
+            <h1 className="text-4xl font-bold text-center mb-4">Frequently Asked Questions</h1>
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Everything you need to know about the Digital Business 100 campaign.
+            </p>
+
+            <div className="max-w-3xl mx-auto space-y-4">
+              {faqs.map((faq) => (
+                <details key={faq.question} className="border rounded-lg p-4 bg-card hover:bg-muted/50 transition-smooth">
+                  <summary className="font-semibold cursor-pointer flex items-center justify-between">
+                    {faq.question}
+                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                  </summary>
+                  <p className="text-muted-foreground mt-3">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <p className="text-muted-foreground mb-4">Still have questions?</p>
+              <Button asChild className="transition-bounce hover:shadow-glow">
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t py-8">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} Digital Business Solutions. All rights reserved.
+          </p>
         </div>
+      </footer>
 
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">Still have questions?</p>
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </div>
-      </div>
+      <WhatsAppButton />
     </div>
   )
 }

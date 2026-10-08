@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
     }
 
     const campaign = await prisma.campaign.findUnique({
-      where: { id: parsed.data.campaignId },
+      where: { slug: parsed.data.campaignId },
       select: { id: true, name: true, capacity: true, enrolledCount: true, status: true },
     })
 

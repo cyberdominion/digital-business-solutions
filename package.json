@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate dev",
@@ -16,6 +17,9 @@
     "test": "vitest",
     "test:watch": "vitest watch",
     "test:run": "vitest run"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -43,6 +47,7 @@
     "eslint-config-next": "16.4.0",
     "prisma": "^6.0.0",
     "tailwindcss": "^4.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^3.0.0"
   }

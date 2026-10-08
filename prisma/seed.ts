@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/client"
 import { ApplicationStatus } from "@/types/domain"
+import { hashPassword } from "@/lib/auth"
 
 async function main() {
   const campaign = await prisma.campaign.upsert({
@@ -91,6 +92,20 @@ async function main() {
       permissionId: adminPermission.id,
     },
   })
+
+  const adminUser = await prisma.user.upsert({
+    where: { email: "admin@admin.com" },
+    update: {},
+    create: {
+      name: "Admin User",
+      email: "admin@admin.com",
+      password: hashPassword("Admin@123!"),
+      role: "PLATFORM_ADMIN",
+      emailVerified: new Date(),
+    },
+  })
+
+  console.log("Admin user created:", adminUser.id)
 
   console.log("Seed completed successfully")
 }

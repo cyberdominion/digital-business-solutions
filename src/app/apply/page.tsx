@@ -95,7 +95,7 @@ export default function ApplyPage() {
 
     try {
       const formData = {
-        campaignId: "campaign_dbi100",
+        campaignId: "dbi100",
         businessName: businessForm.getValues("businessName"),
         legalName: businessForm.getValues("legalName"),
         industry: businessForm.getValues("industry"),
