@@ -30,7 +30,7 @@ export default function AboutPage() {
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild className="transition-bounce hover:shadow-glow">
                   <Link href="/apply">
-                    Join 100 Digital Businesses
+Join 1,000 Digital Businesses
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -113,7 +113,7 @@ export default function AboutPage() {
 
         <section className="py-16 bg-muted/50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose 100 Digital Businesses</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">Why Choose 1,000 Digital Businesses</h2>
             <div className="max-w-4xl mx-auto space-y-8">
               <div className="flex gap-6">
                 <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-primary-foreground">
@@ -154,7 +154,7 @@ export default function AboutPage() {
 
         <section className="py-20 text-center">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-4">Ready to Join 100 Digital Businesses?</h2>
+            <h2 className="text-3xl font-bold mb-4">Ready to Join 1,000 Digital Businesses?</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Apply now and be part of Nigeria&apos;s next generation of digitally empowered businesses.
             </p>

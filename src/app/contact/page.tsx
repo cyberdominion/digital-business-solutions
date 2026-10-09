@@ -26,7 +26,7 @@ export default function ContactPage() {
               <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-gradient mb-4">Contact Us</h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Have questions about the 100 Digital Businesses campaign? We&apos;re here to help.
+                  Have questions about the 1000 Digital Businesses campaign? We&apos;re here to help.
                   Reach out to us and our team will respond within 24 hours.
                 </p>
               </div>

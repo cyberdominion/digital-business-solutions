@@ -29,7 +29,7 @@ export default function PrivacyPage() {
                 At Digital Business Solutions (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;),
                 we are committed to protecting your personal data and respecting your privacy. This Privacy
                 Policy explains how we collect, use, and protect your information when you participate in
-                the 100 Digital Businesses campaign or use our services.
+                the 1000 Digital Businesses campaign or use our services.
               </p>
 
               <h2 className="text-2xl font-semibold mt-10 mb-4">1. Information We Collect</h2>

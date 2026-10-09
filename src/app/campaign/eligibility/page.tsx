@@ -29,7 +29,7 @@ export default function EligibilityPage() {
 
             <h1 className="text-4xl font-bold text-center mb-4">Eligibility Criteria</h1>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              To qualify for the 100 Digital Businesses campaign, your business must meet the following criteria.
+              To qualify for the 1000 Digital Businesses campaign, your business must meet the following criteria.
             </p>
 
             <div className="max-w-2xl mx-auto">

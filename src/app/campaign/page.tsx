@@ -16,10 +16,12 @@ export default async function CampaignPage() {
     }
   })()
 
-  const totalSlots = campaign?.capacity ?? 100
+  const totalSlots = campaign?.capacity ?? 1000
   const filledSlots = campaign?.enrolledCount ?? 0
   const remainingSlots = totalSlots - filledSlots
   const spotsLeft = remainingSlots > 0
+
+  const formatNumber = (n: number) => n.toLocaleString()
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -34,18 +36,18 @@ export default async function CampaignPage() {
                 className="inline-flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm animation-fade-in mb-6"
               >
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span>Launching 100 businesses onto shared infrastructure</span>
+                <span>Launching 1,000 businesses onto shared infrastructure</span>
               </div>
 
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm font-medium animation-slot-breathing">
-                  <span className="text-destructive font-bold">{remainingSlots}</span>
-                  <span className="text-muted-foreground">slots remaining out of {totalSlots}</span>
+                  <span className="text-destructive font-bold">{formatNumber(remainingSlots)}</span>
+                  <span className="text-muted-foreground">slots remaining out of {formatNumber(totalSlots)}</span>
                 </div>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 text-gradient">
-                100 Digital Businesses
+                1,000 Digital Businesses
               </h1>
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
                 Acquire, qualify, pay and onboard your business onto a production-grade digital
@@ -53,7 +55,7 @@ export default async function CampaignPage() {
               </p>
               {spotsLeft && (
                 <div className="mt-4 inline-block bg-destructive/10 border border-destructive/20 rounded-full px-4 py-2 text-sm animation-slot-breathing">
-                  <span className="text-destructive font-medium">Only {remainingSlots} spots left!</span>
+                  <span className="text-destructive font-medium">Only {formatNumber(remainingSlots)} spots left!</span>
                 </div>
               )}
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
@@ -213,7 +215,7 @@ export default async function CampaignPage() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
             <p className="text-muted-foreground mb-8">
-              Only 100 slots available. Join the first cohort today.
+              Only 1,000 slots available. Join the first cohort today.
             </p>
             <Button size="lg" asChild>
               <Link href="/apply">

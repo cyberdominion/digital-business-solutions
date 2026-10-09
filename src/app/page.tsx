@@ -72,7 +72,7 @@ function PriceDisplay() {
       <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 rounded-xl px-6 py-3">
         <div className="text-xs text-muted-foreground uppercase tracking-wider">All-Inclusive Price</div>
         <div className="text-4xl sm:text-5xl font-extrabold text-gradient">₦50,000</div>
-        <div className="text-xs text-muted-foreground mt-1">For the first 100 businesses</div>
+        <div className="text-xs text-muted-foreground mt-1">For the first 1,000 businesses</div>
       </div>
     </div>
   )
@@ -94,7 +94,7 @@ export default function RootPage() {
                 className="inline-flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm animation-fade-in mb-6"
               >
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span>Launching 100 businesses onto shared infrastructure</span>
+                <span>Launching 1,000 businesses onto shared infrastructure</span>
               </div>
 
               <div className="mb-8 animation-fade-in">
@@ -102,7 +102,11 @@ export default function RootPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 animation-fade-in text-balance">
-                Join <span className="text-gradient">100</span> Digital Businesses
+                
+                
+                Join <span className="text-gradient">1,000</span> Digital Businesses <br></br>
+                & <br></br>
+                GO LIVE <span className="text-gradient">FAST</span><br></br>
               </h1>
 
               <div className="my-8 animation-fade-in">
@@ -440,7 +444,7 @@ export default function RootPage() {
                 Ready to Transform Your Business?
               </h2>
               <p className="text-muted-foreground mb-8">
-                Only 100 slots available. Join the first cohort today.
+                Only 1,000 slots available. Join the first cohort today.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -476,7 +480,7 @@ export default function RootPage() {
                 Digital Business Solutions
               </Link>
               <p className="text-sm text-muted-foreground mt-3">
-                Building the infrastructure for 100 Nigerian businesses.
+                Building the infrastructure for 1,000 Nigerian businesses.
               </p>
             </div>
             <div>

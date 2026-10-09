@@ -6,7 +6,7 @@ import { ArrowLeft, ChevronDown } from "lucide-react"
 
 const faqs = [
   {
-    question: "Who is eligible for the 100 Digital Businesses campaign?",
+    question: "Who is eligible for the 1000 Digital Businesses campaign?",
     answer: "The campaign is open to Nigerian businesses of any size that want a professional online presence. We welcome retail, food, fashion, services, and more.",
   },
   {
@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     question: "What happens after I pay?",
-    answer: "After payment verification, we provision your organization and assign an onboarding manager. You'll receive access to your business workspace.",
+    answer: "After payment verification, we provision your organization and assign an onboarding manager. You'll receive access to your business workspace. Once your website is ready, you'll receive a link to your customized website along with admin login credentials to manage your site.",
   },
   {
     question: "How long until my website is live?",
@@ -52,7 +52,7 @@ export default function FaqPage() {
 
             <h1 className="text-4xl font-bold text-center mb-4">Frequently Asked Questions</h1>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Everything you need to know about the 100 Digital Businesses campaign.
+              Everything you need to know about the 1000 Digital Businesses campaign.
             </p>
 
             <div className="max-w-3xl mx-auto space-y-4">
