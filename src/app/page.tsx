@@ -95,7 +95,7 @@ export default function RootPage() {
                 className="inline-flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm animation-fade-in mb-6"
               >
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span>Launching 1,000 businesses onto shared infrastructure</span>
+                <span>Join 1,000+ businesses onto shared infrastructure</span>
               </div>
 
               <div className="mb-8 animation-fade-in">
@@ -105,9 +105,9 @@ export default function RootPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 animation-fade-in text-balance">
                 
                 
-                Join <span className="text-gradient">1,000+</span> Businesses <br></br>
-                To <br></br>
-                GO <span className="text-gradient">LIVE </span>FAST<br></br>
+                Get <span className="text-gradient">Your</span> Businesses <br></br>
+                
+                <span className="text-gradient">Online</span> Today<br></br>
               </h1>
 
               <div className="my-8 animation-fade-in">

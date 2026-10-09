@@ -36,7 +36,7 @@ export default async function CampaignPage() {
                 className="inline-flex items-center gap-2 bg-muted px-3 py-1 rounded-full text-sm animation-fade-in mb-6"
               >
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span>Launching 1,000 businesses onto shared infrastructure</span>
+                <span>Join 1,000+ businesses onto shared infrastructure</span>
               </div>
 
               <div className="mb-6">
@@ -47,7 +47,7 @@ export default async function CampaignPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 text-gradient">
-                Get Your Businesses Online
+                Your Business Deserves More Than WhatsApp
               </h1>
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
                 Acquire, qualify, pay and onboard your business onto a production-grade digital

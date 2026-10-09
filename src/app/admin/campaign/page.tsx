@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Search, BarChart3 } from "lucide-react"
+import { Search, BarChart3, Loader2 } from "lucide-react"
+import { updateCampaignCapacity } from "@/modules/campaigns/actions"
 
 export default async function AdminCampaignPage({
   searchParams,
@@ -73,6 +74,22 @@ export default async function AdminCampaignPage({
                 <span className="text-muted-foreground">Start Date:</span>
                 <span>{new Date(campaign.startDate).toLocaleDateString()}</span>
               </div>
+              
+              <form action={updateCampaignCapacity} className="flex items-center gap-2 pt-2 border-t">
+                <input type="hidden" name="campaignId" value={campaign.id} />
+                <Input
+                  name="capacity"
+                  type="number"
+                  min="0"
+                  defaultValue={campaign.capacity}
+                  className="w-24"
+                  placeholder="New capacity"
+                />
+                <Button type="submit" size="sm">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Update
+                </Button>
+              </form>
             </CardContent>
           </Card>
         ))}
