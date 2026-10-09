@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ArrowRight, Check, Star, BarChart3, Globe, TrendingUp, Shield, Clock, ClipboardEdit, Search, CreditCard, Rocket } from "lucide-react"
+import { BusinessCarousel } from "@/components/business-carousel"
 import { useState, useEffect } from "react"
 
 const COUNTDOWN_TARGET = new Date("2026-12-31T23:59:59")
@@ -114,8 +115,8 @@ export default function RootPage() {
               </div>
 
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto animation-fade-in">
-                We Get Your Business Online, Get You Discovered and Grow Your Sales.
-                Get Access with <strong className="text-foreground">₦50,000</strong>.
+                Your Next Customer Is Online. Is Your Business? <br></br>
+                Get Online with <strong className="text-foreground">₦50,000</strong>.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
@@ -180,60 +181,60 @@ export default function RootPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">What You Get</h2>
-            <div className="max-w-3xl mx-auto space-y-4">
-              <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-smooth">
-                <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Professional Business Website</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Mobile-responsive website tailored to your industry.
-                  </p>
+            <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="group bg-card rounded-xl p-6 shadow-soft hover:shadow-medium transition-smooth hover-lift">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-spring">
+                  <Check className="h-6 w-6 text-green-600" />
                 </div>
+                <h3 className="font-semibold text-lg mb-2">Professional Business Website</h3>
+                <p className="text-sm text-muted-foreground">
+                  Mobile-responsive website tailored to your industry.
+                </p>
               </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-smooth">
-                <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Domain Acquisition</h3>
-                  <p className="text-sm text-muted-foreground">
-                    One year domain registration included where applicable.
-                  </p>
+              <div className="group bg-card rounded-xl p-6 shadow-soft hover:shadow-medium transition-smooth hover-lift">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-spring">
+                  <Check className="h-6 w-6 text-green-600" />
                 </div>
+                <h3 className="font-semibold text-lg mb-2">Domain Acquisition</h3>
+                <p className="text-sm text-muted-foreground">
+                  One year domain registration included where applicable.
+                </p>
               </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-smooth">
-                <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold">One Year Hosting</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Fast, secure hosting powered by reliable Edge Network.
-                  </p>
+              <div className="group bg-card rounded-xl p-6 shadow-soft hover:shadow-medium transition-smooth hover-lift">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-spring">
+                  <Check className="h-6 w-6 text-green-600" />
                 </div>
+                <h3 className="font-semibold text-lg mb-2">One Year Hosting</h3>
+                <p className="text-sm text-muted-foreground">
+                  Fast, secure hosting powered by reliable Edge Network.
+                </p>
               </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-smooth">
-                <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Lead/Contact Capture</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Built-in forms to generate and capture leads.
-                  </p>
+              <div className="group bg-card rounded-xl p-6 shadow-soft hover:shadow-medium transition-smooth hover-lift">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-spring">
+                  <Check className="h-6 w-6 text-green-600" />
                 </div>
+                <h3 className="font-semibold text-lg mb-2">Lead/Contact Capture</h3>
+                <p className="text-sm text-muted-foreground">
+                  Built-in forms to generate and capture leads.
+                </p>
               </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-smooth">
-                <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Basic CRM & Admin</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Manage customers and orders through a simple dashboard.
-                  </p>
+              <div className="group bg-card rounded-xl p-6 shadow-soft hover:shadow-medium transition-smooth hover-lift">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-spring">
+                  <Check className="h-6 w-6 text-green-600" />
                 </div>
+                <h3 className="font-semibold text-lg mb-2">Basic CRM & Admin</h3>
+                <p className="text-sm text-muted-foreground">
+                  Manage customers and orders through a simple dashboard.
+                </p>
               </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-smooth">
-                <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Analytics & Growth</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Basic analytics to track performance and growth.
-                  </p>
+              <div className="group bg-card rounded-xl p-6 shadow-soft hover:shadow-medium transition-smooth hover-lift">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-spring">
+                  <Check className="h-6 w-6 text-green-600" />
                 </div>
+                <h3 className="font-semibold text-lg mb-2">Analytics & Growth</h3>
+                <p className="text-sm text-muted-foreground">
+                  Basic analytics to track performance and growth.
+                </p>
               </div>
             </div>
           </div>
@@ -312,65 +313,7 @@ export default function RootPage() {
                 See the businesses that have already been onboarded onto our shared infrastructure platform.
               </p>
             </div>
-            <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <Globe className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-center mb-2 text-gradient">Patience Sewing</h3>
-                  <p className="text-sm text-muted-foreground text-center mb-3">Fashion & Apparel · Lagos</p>
-                  <div className="text-center">
-                    <a
-                      href="https://patiencesewing.ltd"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
-                    >
-                      Visit Website
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <Globe className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-center mb-2 text-gradient">Grace Kitchen</h3>
-                  <p className="text-sm text-muted-foreground text-center mb-3">Food & Restaurant · Abuja</p>
-                  <div className="text-center">
-                    <a
-                      href="https://gracekitchen.com.ng"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
-                    >
-                      Visit Website
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent-purple/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <Globe className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-center mb-2 text-gradient">Urban Threads</h3>
-                  <p className="text-sm text-muted-foreground text-center mb-3">Fashion & Apparel · Port Harcourt</p>
-                  <div className="text-center">
-                    <a
-                      href="https://urbanthreads.com.ng"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
-                    >
-                      Visit Website
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            <BusinessCarousel />
           </div>
         </section>
 

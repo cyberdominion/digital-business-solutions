@@ -15,9 +15,12 @@ export default async function DashboardApplicationPage() {
   }
 
   const applications = await prisma.application.findMany({
-    where: authContext.organizationId
-      ? { organizationId: authContext.organizationId }
-      : { applicantUserId: authContext.userId },
+    where: {
+      OR: [
+        authContext.organizationId ? { organizationId: authContext.organizationId } : {},
+        authContext.userId ? { applicantUserId: authContext.userId } : {},
+      ].filter((condition) => Object.keys(condition).length > 0),
+    },
     orderBy: { createdAt: "desc" },
     include: { campaign: true },
   })

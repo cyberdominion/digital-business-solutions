@@ -29,10 +29,14 @@ export default async function DashboardPage() {
   const authContext = await getAuthContextCached()
 
   // Fetch user's latest application
+  // Check both organizationId and applicantUserId to handle all cases
   const latestApplication = await prisma.application.findFirst({
-    where: authContext.organizationId
-      ? { organizationId: authContext.organizationId }
-      : { applicantUserId: authContext.user?.id },
+    where: {
+      OR: [
+        authContext.organizationId ? { organizationId: authContext.organizationId } : {},
+        authContext.user?.id ? { applicantUserId: authContext.user.id } : {},
+      ].filter((condition) => Object.keys(condition).length > 0),
+    },
     orderBy: { createdAt: "desc" },
     select: { id: true, status: true, businessName: true, submittedAt: true, updatedAt: true }
   })
