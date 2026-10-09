@@ -3,7 +3,7 @@ import { getAuthContextCached } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { FileText, CreditCard, FolderOpen, CheckCircle, ArrowRight, Globe, Building2, Clock, Shield, ExternalLink } from "lucide-react"
+import { FileText, CreditCard, FolderOpen, CheckCircle, ArrowRight, Globe, Building2, Clock, Shield, ExternalLink, Check } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { prisma } from "@/lib/db/client"
 
@@ -63,6 +63,21 @@ export default async function DashboardPage() {
   const isOnboardingOrBeyond = ["ONBOARDING", "DEVELOPMENT", "REVIEW", "CHANGES_REQUESTED", "LIVE"].includes(latestApplication?.status ?? "")
   const isLive = latestApplication?.status === "LIVE"
 
+  // Step completion states for visual progress
+  const stepCompleted = {
+    application: latestApplication && ["SUBMITTED", "UNDER_REVIEW", "APPROVED", "PAYMENT_PENDING", "PAID", "ONBOARDING", "DEVELOPMENT", "REVIEW", "CHANGES_REQUESTED", "LIVE"].includes(latestApplication.status),
+    payment: isPaidOrBeyond,
+    onboarding: isOnboardingOrBeyond,
+    website: isLive,
+  }
+
+  const stepCurrent = {
+    application: latestApplication && ["SUBMITTED", "UNDER_REVIEW"].includes(latestApplication.status),
+    payment: ["APPROVED", "PAYMENT_PENDING"].includes(latestApplication?.status ?? ""),
+    onboarding: ["PAID", "ONBOARDING", "DEVELOPMENT", "REVIEW", "CHANGES_REQUESTED"].includes(latestApplication?.status ?? ""),
+    website: isOnboardingOrBeyond && !isLive,
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -71,59 +86,139 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* Application Card */}
         <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gradient flex items-center gap-2">
               <FileText className="h-4 w-4 text-primary" />
               Application
             </CardTitle>
+            {stepCompleted.application && (
+              <div className="flex items-center justify-center w-6 h-6 bg-green-100 rounded-full">
+                <Check className="h-4 w-4 text-green-600" />
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gradient">{appStatus.label}</div>
             <Badge className={`mt-2 inline-block ${appStatus.color}`}>{appStatus.label}</Badge>
             <p className="text-xs text-muted-foreground mt-2">{appStatus.description}</p>
+            {latestApplication && (
+              <Button asChild variant="outline" size="sm" className="mt-3 w-full transition-smooth hover:bg-primary/10 hover:text-primary">
+                <Link href="/dashboard/application/status">View Details</Link>
+              </Button>
+            )}
           </CardContent>
         </Card>
 
+        {/* Payment Card */}
         <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gradient flex items-center gap-2">
               <CreditCard className="h-4 w-4 text-primary" />
               Payment
             </CardTitle>
+            {stepCompleted.payment && (
+              <div className="flex items-center justify-center w-6 h-6 bg-green-100 rounded-full">
+                <Check className="h-4 w-4 text-green-600" />
+              </div>
+            )}
+            {stepCurrent.payment && !stepCompleted.payment && (
+              <div className="flex items-center justify-center w-6 h-6 bg-amber-100 rounded-full animation-pulse">
+                <CreditCard className="h-4 w-4 text-amber-600" />
+              </div>
+            )}
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gradient">{isApprovedOrBeyond ? "Ready" : "Pending"}</div>
-            <Badge className={`mt-2 inline-block ${isApprovedOrBeyond ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800"}`}>{isApprovedOrBeyond ? "Ready to Pay" : "Awaiting Approval"}</Badge>
-            <p className="text-xs text-muted-foreground mt-2">{isApprovedOrBeyond ? "₦50,000 payment can be completed now." : "₦50,000 payment pending approval."}</p>
+            <div className="text-2xl font-bold text-gradient">{stepCompleted.payment ? "Completed" : (isApprovedOrBeyond ? "Ready" : "Pending")}</div>
+            <Badge className={`mt-2 inline-block ${stepCompleted.payment ? "bg-green-100 text-green-800" : (isApprovedOrBeyond ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800")}`}>
+              {stepCompleted.payment ? "Paid" : (isApprovedOrBeyond ? "Ready to Pay" : "Awaiting Approval")}
+            </Badge>
+            <p className="text-xs text-muted-foreground mt-2">{stepCompleted.payment ? "Payment verified and completed." : (isApprovedOrBeyond ? "₦50,000 payment can be completed now." : "₦50,000 payment pending approval.")}</p>
+            {isApprovedOrBeyond && !stepCompleted.payment && (
+              <Button asChild className="mt-3 w-full transition-bounce hover:shadow-glow bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Link href="/dashboard/payment">Complete Payment</Link>
+              </Button>
+            )}
+            {stepCompleted.payment && (
+              <Button asChild variant="outline" size="sm" className="mt-3 w-full transition-smooth hover:bg-primary/10 hover:text-primary">
+                <Link href="/dashboard/payment">View Receipt</Link>
+              </Button>
+            )}
           </CardContent>
         </Card>
 
+        {/* Onboarding Card */}
         <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gradient flex items-center gap-2">
               <FolderOpen className="h-4 w-4 text-primary" />
               Onboarding
             </CardTitle>
+            {stepCompleted.onboarding && (
+              <div className="flex items-center justify-center w-6 h-6 bg-green-100 rounded-full">
+                <Check className="h-4 w-4 text-green-600" />
+              </div>
+            )}
+            {stepCurrent.onboarding && !stepCompleted.onboarding && (
+              <div className="flex items-center justify-center w-6 h-6 bg-purple-100 rounded-full animation-pulse">
+                <FolderOpen className="h-4 w-4 text-purple-600" />
+              </div>
+            )}
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gradient">{isPaidOrBeyond ? "Active" : "Not Started"}</div>
-            <Badge className={`mt-2 inline-block ${isPaidOrBeyond ? "bg-purple-100 text-purple-800" : "bg-gray-100 text-gray-800"}`}>{isPaidOrBeyond ? "In Progress" : "Pending Payment"}</Badge>
-            <p className="text-xs text-muted-foreground mt-2">{isPaidOrBeyond ? "Onboarding is in progress." : "Onboarding begins after payment verification."}</p>
+            <div className="text-2xl font-bold text-gradient">{stepCompleted.onboarding ? "Completed" : (isPaidOrBeyond ? "Active" : "Not Started")}</div>
+            <Badge className={`mt-2 inline-block ${stepCompleted.onboarding ? "bg-green-100 text-green-800" : (isPaidOrBeyond ? "bg-purple-100 text-purple-800" : "bg-gray-100 text-gray-800")}`}>
+              {stepCompleted.onboarding ? "Completed" : (isPaidOrBeyond ? "In Progress" : "Pending Payment")}
+            </Badge>
+            <p className="text-xs text-muted-foreground mt-2">{stepCompleted.onboarding ? "Onboarding milestones completed." : (isPaidOrBeyond ? "Onboarding is in progress." : "Onboarding begins after payment verification.")}</p>
+            {isPaidOrBeyond && !stepCompleted.onboarding && (
+              <Button asChild className="mt-3 w-full transition-bounce hover:shadow-glow bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Link href="/dashboard/onboarding">Continue Onboarding</Link>
+              </Button>
+            )}
+            {stepCompleted.onboarding && (
+              <Button asChild variant="outline" size="sm" className="mt-3 w-full transition-smooth hover:bg-primary/10 hover:text-primary">
+                <Link href="/dashboard/onboarding">View Progress</Link>
+              </Button>
+            )}
           </CardContent>
         </Card>
 
+        {/* Website Card */}
         <Card className="shadow-strong border border-border/50 bg-card transition-smooth hover:shadow-glow hover-lift">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gradient flex items-center gap-2">
               <Globe className="h-4 w-4 text-primary" />
               Website
             </CardTitle>
+            {stepCompleted.website && (
+              <div className="flex items-center justify-center w-6 h-6 bg-emerald-100 rounded-full">
+                <Check className="h-4 w-4 text-emerald-600" />
+              </div>
+            )}
+            {stepCurrent.website && !stepCompleted.website && (
+              <div className="flex items-center justify-center w-6 h-6 bg-indigo-100 rounded-full animation-pulse">
+                <Globe className="h-4 w-4 text-indigo-600" />
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-gradient">{isLive ? "Live" : (isOnboardingOrBeyond ? "In Production" : "Not Started")}</div>
-            <Badge className={`mt-2 inline-block ${isLive ? "bg-emerald-100 text-emerald-800" : (isOnboardingOrBeyond ? "bg-purple-100 text-purple-800" : "bg-gray-100 text-gray-800")}`}>{isLive ? "Live" : (isOnboardingOrBeyond ? "Building" : "Pending")}</Badge>
+            <Badge className={`mt-2 inline-block ${isLive ? "bg-emerald-100 text-emerald-800" : (isOnboardingOrBeyond ? "bg-purple-100 text-purple-800" : "bg-gray-100 text-gray-800")}`}>
+              {isLive ? "Live" : (isOnboardingOrBeyond ? "Building" : "Pending")}
+            </Badge>
             <p className="text-xs text-muted-foreground mt-2">{isLive ? "Your website is live!" : (isOnboardingOrBeyond ? "Your website is being built." : "Website creation starts after onboarding.")}</p>
+            {isLive && (
+              <Button asChild className="mt-3 w-full transition-bounce hover:shadow-glow bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Link href="/dashboard/application/status">View Website</Link>
+              </Button>
+            )}
+            {isOnboardingOrBeyond && !isLive && (
+              <Button asChild variant="outline" size="sm" className="mt-3 w-full transition-smooth hover:bg-primary/10 hover:text-primary">
+                <Link href="/dashboard/onboarding">Track Build</Link>
+              </Button>
+            )}
           </CardContent>
         </Card>
       </div>

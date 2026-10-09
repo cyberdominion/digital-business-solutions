@@ -68,7 +68,7 @@ export function Header() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/login">Login</Link>
           </Button>
-          <Button asChild className="transition-bounce hover:shadow-glow">
+          <Button asChild size="lg" className="transition-bounce hover:shadow-glow bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3">
             <Link href="/apply">Start Application</Link>
           </Button>
         </nav>
@@ -118,10 +118,10 @@ export function Header() {
             >
               Login
             </Link>
-            <Button asChild className="w-full transition-bounce hover:shadow-glow">
+            <Button asChild size="lg" className="w-full transition-bounce hover:shadow-glow bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3">
               <Link href="/apply" onClick={() => setIsMobileMenuOpen(false)}>
                 Start Application
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>

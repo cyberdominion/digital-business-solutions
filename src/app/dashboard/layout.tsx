@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Header } from "@/components/header"
 import {
   LayoutDashboard,
   FileText,
@@ -9,7 +10,6 @@ import {
   MessageSquare,
   Headphones,
   Settings,
-  Menu,
   ChevronDown,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -33,16 +33,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between">
-          <Link href="/dashboard" className="font-bold text-xl">
-            DBI
-          </Link>
-          <Button variant="ghost" size="sm" className="md:hidden">
-            <Menu className="h-4 w-4" />
-          </Button>
-        </div>
-      </header>
+      <Header />
 
       <div className="flex flex-1 overflow-hidden">
         <aside className="hidden md:flex w-64 flex-col border-r bg-muted/30">

@@ -104,9 +104,9 @@ export default function RootPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 animation-fade-in text-balance">
                 
                 
-                Join <span className="text-gradient">1,000</span> Digital Businesses <br></br>
-                & <br></br>
-                GO LIVE <span className="text-gradient">FAST</span><br></br>
+                Join <span className="text-gradient">1,000+</span> Businesses <br></br>
+                To <br></br>
+                GO <span className="text-gradient">LIVE </span>FAST<br></br>
               </h1>
 
               <div className="my-8 animation-fade-in">
@@ -114,19 +114,19 @@ export default function RootPage() {
               </div>
 
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto animation-fade-in">
-                Acquire, qualify, pay and onboard your business onto a production-grade digital
-                infrastructure platform for just <strong className="text-foreground">₦50,000</strong>.
+                We Get Your Business Online, Get You Discovered and Grow Your Sales.
+                Get Access with <strong className="text-foreground">₦50,000</strong>.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  size="lg"
+                  size="xl"
                   asChild
-                  className="shadow-medium hover:shadow-strong transition-bounce hover-lift"
+                  className="shadow-medium hover:shadow-strong transition-bounce hover-lift bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-4 text-lg"
                 >
                   <Link href="/apply">
                     Start Application
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-3 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild className="transition-smooth">
@@ -322,7 +322,7 @@ export default function RootPage() {
                   <p className="text-sm text-muted-foreground text-center mb-3">Fashion & Apparel · Lagos</p>
                   <div className="text-center">
                     <a
-                      href="https://patiencesewing.com.ng"
+                      href="https://patiencesewing.ltd"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-primary hover:text-primary/80 font-medium transition-smooth"
@@ -448,13 +448,13 @@ export default function RootPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  size="lg"
+                  size="xl"
                   asChild
-                  className="shadow-medium hover:shadow-strong transition-bounce hover-lift"
+                  className="shadow-medium hover:shadow-strong transition-bounce hover-lift bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-4 text-lg"
                 >
                   <Link href="/apply">
                     Apply Now
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-3 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>

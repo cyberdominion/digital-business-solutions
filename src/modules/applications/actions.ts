@@ -43,6 +43,8 @@ export async function updateApplicationStatus(formData: FormData) {
 
   revalidatePath(`/admin/applications/${applicationId}`)
   revalidatePath("/admin/applications")
+  revalidatePath("/dashboard")
+  revalidatePath("/dashboard/application/status")
 }
 
 export async function recordManualPayment(formData: FormData) {
@@ -115,4 +117,8 @@ export async function recordManualPayment(formData: FormData) {
   revalidatePath(`/admin/applications/${applicationId}`)
   revalidatePath("/admin/applications")
   revalidatePath("/admin/dashboard")
+  revalidatePath("/dashboard")
+  revalidatePath("/dashboard/application/status")
+  revalidatePath("/dashboard/payment")
+  revalidatePath("/dashboard/onboarding")
 }
