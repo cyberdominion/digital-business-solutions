@@ -2,10 +2,11 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { AIAdminAssistant } from "@/components/ai-admin-assistant"
 import { cn } from "cn"
+import { useState, useEffect, useRef } from "react"
 import {
   LayoutDashboard,
   FileText,
@@ -18,6 +19,8 @@ import {
   Shield,
   Menu,
   X,
+  Bot,
+  Sparkles,
 } from "lucide-react"
 
 const navigation = [
@@ -89,6 +92,7 @@ export default function AdminLayout({
             </Link>
           </div>
           <nav className="flex items-center gap-2">
+            <AIAdminAssistant />
             <Button variant="ghost" size="sm">
               <Users className="h-4 w-4" />
             </Button>

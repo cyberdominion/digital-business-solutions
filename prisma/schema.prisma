@@ -23,6 +23,7 @@ model User {
   sessions     Session[]
   applications Application[]
   auditLogs    AuditLog[]
+  tasks        Task[]
 
   @@index([email])
 }
@@ -354,6 +355,7 @@ model Task {
 
   organization Organization? @relation(fields: [organizationId], references: [id])
   project      OnboardingProject? @relation(fields: [projectId], references: [id])
+  assignee     User?        @relation(fields: [assigneeId], references: [id])
 
   @@index([organizationId])
   @@index([projectId])
