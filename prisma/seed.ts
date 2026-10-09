@@ -7,8 +7,8 @@ async function main() {
     where: { slug: "dbi100" },
     update: {},
     create: {
-      name: "1000 Digital Businesses",
-      slug: "dbi1000",
+      name: "100 Digital Businesses",
+      slug: "dbi100",
       price: 50000,
       currency: "NGN",
       capacity: 1000,

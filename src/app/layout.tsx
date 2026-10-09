@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Digital Business Solutions",
-  description: "1000 Digital Businesses - Acquire, qualify, pay and onboard the first 1000 Nigerian businesses onto a shared multi-tenant infrastructure platform.",
+  description: "Get Your Business Online Today",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-96x96.png",
