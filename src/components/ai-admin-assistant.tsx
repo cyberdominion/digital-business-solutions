@@ -115,8 +115,8 @@ export function AIAdminAssistant() {
           AI Assistant
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-lg max-h-[70vh]">
-        <DialogHeader className="flex items-center justify-between">
+      <DialogContent className="max-w-2xl max-h-[85vh] flex flex-col">
+        <DialogHeader className="flex items-center justify-between border-b px-4 py-3">
           <DialogTitle className="text-gradient flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />
             AI Admin Assistant
@@ -132,8 +132,8 @@ export function AIAdminAssistant() {
           </Button>
         </DialogHeader>
         
-        <ScrollArea className="h-[50vh] pr-4" ref={scrollAreaRef}>
-          <div className="space-y-4">
+        <ScrollArea className="flex-1 pr-4 pb-4" ref={scrollAreaRef}>
+          <div className="space-y-4 pt-2">
             {messages.map((msg) => (
               <div key={msg.id} className={cn(
                 "flex gap-3 max-w-[85%]",
@@ -166,7 +166,7 @@ export function AIAdminAssistant() {
           </div>
         </ScrollArea>
 
-        <div className="border-t pt-4">
+        <div className="border-t bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/80 p-4 sticky bottom-0">
           <div className="flex gap-2 mb-3">
             {AI_PROMPTS.slice(0, 3).map((prompt) => (
               <Button

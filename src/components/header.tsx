@@ -49,7 +49,7 @@ export function Header() {
 
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-gradient">
           <Image src="/logo.png" alt="Logo" width={55} height={55} />
           Digital Business Solutions
@@ -98,7 +98,7 @@ export function Header() {
           isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="container mx-auto px-4 py-4 space-y-3">
+        <div className="container mx-auto px-6 py-4 space-y-3">
           {navLinks.map((link) => (
             <Link
               key={link.href}

@@ -10,6 +10,18 @@ const getApplicationsSchema = z.object({
   limit: z.string().transform(Number).pipe(z.number().min(1).max(100)).optional(),
 })
 
+async function getUserFromRequest(req: NextRequest): Promise<string | null> {
+  const token = req.cookies.get("dbi_session")?.value
+  if (!token) return null
+
+  const session = await prisma.session.findUnique({
+    where: { id: token },
+  })
+  if (!session || session.expiresAt < new Date()) return null
+
+  return session.userId
+}
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const parsed = getApplicationsSchema.safeParse(Object.fromEntries(searchParams))
@@ -83,6 +95,9 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Get authenticated user if any
+    const userId = await getUserFromRequest(req)
+
     const campaign = await prisma.campaign.findUnique({
       where: { slug: parsed.data.campaignId },
       select: { id: true, name: true, capacity: true, enrolledCount: true, status: true },
@@ -111,6 +126,7 @@ export async function POST(req: NextRequest) {
       return await tx.application.create({
         data: {
           campaignId: campaign.id,
+          applicantUserId: userId,
           businessName: parsed.data.businessName,
           legalName: parsed.data.businessName,
           industry: parsed.data.industry,
@@ -147,7 +163,7 @@ export async function POST(req: NextRequest) {
         action: "application.submitted",
         resource: "application",
         resourceId: application.id,
-        metadata: { campaignId: campaign.id, email: parsed.data.email },
+        metadata: { campaignId: campaign.id, email: parsed.data.email, applicantUserId: userId },
       },
     })
 

@@ -74,7 +74,7 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between">
+        <div className="container mx-auto flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <Button
               ref={toggleRef}
@@ -91,7 +91,7 @@ export default function AdminLayout({
               DBI Admin
             </Link>
           </div>
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-2 px-4">
             <AIAdminAssistant />
             <Button variant="ghost" size="sm">
               <Users className="h-4 w-4" />
@@ -107,7 +107,7 @@ export default function AdminLayout({
           isMobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="container mx-auto px-4 py-4 space-y-2">
+        <div className="container mx-auto px-6 py-4 space-y-2">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -125,7 +125,7 @@ export default function AdminLayout({
       <div className="flex flex-1 overflow-hidden">
         <aside className="hidden md:flex w-64 flex-col border-r bg-gradient-to-b from-muted/30 via-background to-muted/30">
           <nav className="flex-1 overflow-y-auto py-4">
-            <ul className="space-y-1 px-3">
+            <ul className="space-y-1 px-4">
               {navigation.map((item) => (
                 <li key={item.name}>
                   <Link
