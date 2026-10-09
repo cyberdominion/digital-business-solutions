@@ -47,7 +47,7 @@ export default async function CampaignPage() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 text-gradient">
-                1,000 Digital Businesses
+                Get Your Businesses Online
               </h1>
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
                 Acquire, qualify, pay and onboard your business onto a production-grade digital

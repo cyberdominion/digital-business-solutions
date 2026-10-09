@@ -115,7 +115,9 @@ export default function RootPage() {
               </div>
 
               <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto animation-fade-in">
-                Your Next Customer Is Online. Is Your Business? <br></br>
+                Your Next Customer Is Online. Is Your Business? 
+                <br></br>
+                  <br></br>
                 Get Online with <strong className="text-foreground">₦50,000</strong>.
               </p>
 
@@ -126,7 +128,7 @@ export default function RootPage() {
                   className="shadow-medium hover:shadow-strong transition-bounce hover-lift bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-4 text-lg"
                 >
                   <Link href="/apply">
-                    Start Application
+                    START APPLICATION
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Link>
                 </Button>
@@ -433,7 +435,7 @@ export default function RootPage() {
                   The Campaign
                 </Link>
                 <Link href="/apply" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
-                  Apply Now
+                  APPLY NOW
                 </Link>
                 <Link href="/campaign/how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
                   How It Works
