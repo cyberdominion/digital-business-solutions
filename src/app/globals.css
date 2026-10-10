@@ -475,6 +475,40 @@ body {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer-slow {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
 .animation-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
 }
@@ -493,6 +527,14 @@ body {
 
 .animation-slot-breathing {
   animation: slot-breathing 2s ease-in-out infinite;
+}
+
+.animation-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animation-shimmer-slow {
+  animation: shimmer-slow 4s ease-in-out infinite;
 }
 
 .animation-fade-in {

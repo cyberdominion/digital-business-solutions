@@ -68,14 +68,29 @@ function CountdownTimer() {
 
 function PriceDisplay() {
   return (
-    <div className="relative inline-block">
+    <Link
+      href="/apply"
+      className="relative inline-block animation-pulse-breathing group"
+      aria-label="Start your application for ₦50,000"
+    >
       <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent-purple rounded-xl blur opacity-75"></div>
-      <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 rounded-xl px-6 py-3">
-        <div className="text-xs text-muted-foreground uppercase tracking-wider">All-Inclusive Price</div>
-        <div className="text-4xl sm:text-5xl font-extrabold text-gradient">₦50,000</div>
-        <div className="text-xs text-muted-foreground mt-1">For the first 1,000 businesses</div>
+      <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 rounded-xl px-6 py-3 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:border-gold-400/50 group-hover:shadow-[0_0_40px_rgba(255,201,40,0.3)]">
+        {/* Light reflection shimmer */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent animation-shimmer-slow" />
+        </div>
+        <div className="relative z-10">
+          <div className="text-xs text-muted-foreground uppercase tracking-wider">All-Inclusive Price</div>
+          <div className="text-4xl sm:text-5xl font-extrabold text-gradient">₦50,000</div>
+          <div className="text-xs text-muted-foreground mt-1">For the first 1,000 businesses</div>
+        </div>
       </div>
-    </div>
+      {/* Click indicator */}
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-gold-500 font-medium flex items-center gap-1">
+        <span>Click to Apply</span>
+        <ArrowRight className="h-3 w-3" />
+      </div>
+    </Link>
   )
 }
 
@@ -122,8 +137,7 @@ export default function RootPage() {
 
               
               <p>
-                  <br></br>
-                Get Online with <strong className="text-foreground">₦50,000</strong>.
+                Go Online with Just <strong className="text-foreground">₦50,000</strong>.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
