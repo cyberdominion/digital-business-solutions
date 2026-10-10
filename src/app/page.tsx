@@ -102,6 +102,12 @@ export default function RootPage() {
                 <CountdownTimer />
               </div>
 
+              <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto animation-fade-in">
+                Your Next Customer Is Online. 
+                <br></br>Is Your Business? 
+                <br></br> 
+              </p>
+
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 animation-fade-in text-balance">
                 
                 
@@ -114,9 +120,8 @@ export default function RootPage() {
                 <PriceDisplay />
               </div>
 
-              <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto animation-fade-in">
-                Your Next Customer Is Online. Is Your Business? 
-                <br></br>
+              
+              <p>
                   <br></br>
                 Get Online with <strong className="text-foreground">₦50,000</strong>.
               </p>
