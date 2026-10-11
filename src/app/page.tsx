@@ -74,7 +74,7 @@ function PriceDisplay() {
       aria-label="Start your application for ₦50,000"
     >
       <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent-purple rounded-xl blur opacity-75"></div>
-      <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 rounded-xl px-6 py-3 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:border-gold-400/50 group-hover:shadow-[0_0_40px_rgba(255,201,40,0.3)]">
+      <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 rounded-xl px-6 py-3 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:border-gold-400/50 group-hover:shadow-[0_0_40px_rgba(255,201,40,0.3)] tap-feedback-press">
         {/* Light reflection shimmer */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent animation-shimmer-slow" />
@@ -144,14 +144,14 @@ export default function RootPage() {
                 <Button
                   size="xl"
                   asChild
-                  className="shadow-medium hover:shadow-strong transition-bounce hover-lift bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-4 text-lg"
+                  className="shadow-medium hover:shadow-strong transition-bounce hover-lift bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-4 text-lg tap-feedback-press"
                 >
                   <Link href="/apply">
                     START APPLICATION
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild className="transition-smooth">
+                <Button variant="outline" size="lg" asChild className="transition-smooth tap-feedback-press">
                   <Link href="/campaign">Learn More</Link>
                 </Button>
               </div>
